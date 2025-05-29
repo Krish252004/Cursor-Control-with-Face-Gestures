@@ -1,4 +1,4 @@
-# Hand Gesture-Based Volume Control System
+# Hand and Face Gesture Recognition for System Control
 
 This project uses real-time hand gesture recognition to control system volume and perform utility actions like muting/unmuting or taking screenshots — all using your webcam and hand gestures.
 
