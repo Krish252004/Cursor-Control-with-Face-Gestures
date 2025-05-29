@@ -1,22 +1,42 @@
-# Cursor Control with Face Gestures
-This project implements a hands-free cursor control system that leverages deep learning and artificial neural networks to interpret facial gestures. Designed to improve accessibility and offer an alternative way to interact with a computer, this system allows users to control the cursor through simple head movements and facial expressions.
+# Hand Gesture-Based Volume Control System
 
-# Key Features:
-# Face Gesture Recognition: 
-Detects and interprets various facial gestures to control cursor movements, such as moving the cursor left, right, up, or down, and performing clicks.
-# Deep Learning Models: 
-Utilizes convolutional neural networks (CNNs) for real-time face tracking and gesture recognition, ensuring high accuracy and responsiveness.
-# Artificial Neural Networks:
-Employed to process and classify the detected gestures, translating them into precise cursor movements.
-# Technologies Used:
-# Convolutional Neural Networks (CNNs): 
-Used for face detection and tracking, providing the foundation for gesture recognition.
-# Python & OpenCV: 
-Core tools for implementing the system, with OpenCV handling image processing and Python managing the deep learning models.
-# TensorFlow/PyTorch:
-Frameworks used for building and training the neural networks.
-# Applications:
-# Accessibility: 
-Provides an alternative input method for users with physical disabilities, enabling them to control the computer without using hands.
-# Innovative User Interaction: 
-Offers a novel way to interact with a computer, which could be integrated into various user interface systems or gaming environments.
+This project uses real-time hand gesture recognition to control system volume and perform utility actions like muting/unmuting or taking screenshots — all using your webcam and hand gestures.
+
+## Features
+
+- Volume Up / Down using hand gestures
+- Mute / Unmute with toggle gesture
+- Take a screenshot with a custom gesture
+- Real-time hand tracking using MediaPipe
+- CNN-based gesture classification with TensorFlow
+- Pycaw for volume control on Windows
+- PyAutoGUI for automated screenshot
+
+## How It Works
+
+- MediaPipe detects hand landmarks (21 points per hand).
+- The 2D `(x, y)` coordinates of landmarks are flattened and preprocessed.
+- These coordinates are passed to a **1D Convolutional Neural Network (CNN)** built using TensorFlow/Keras.
+- The CNN classifies the gesture into one of four predefined categories.
+- A queue is used to stabilize predictions by averaging recent outputs.
+- Based on the predicted gesture, the corresponding action (volume change, mute/unmute, screenshot) is performed.
+
+## Tech Stack
+
+- Python 3.8+
+- OpenCV – Webcam input and UI rendering
+- MediaPipe – Hand landmark detection
+- TensorFlow / Keras – Gesture classification (Conv1D model)
+- NumPy – Data preprocessing
+- PyAutoGUI – Screenshot capture
+- PyCAW – Audio volume control via COM
+- Deque – Smoothing predictions for stable classification
+
+## Gesture Classes
+
+| Class ID | Gesture        | Action              |
+|----------|----------------|---------------------|
+| 0        | Volume Up      | Increases volume    |
+| 1        | Volume Down    | Decreases volume    |
+| 2        | Mute/Unmute    | Toggles mute        |
+| 3        | Screenshot     | Takes a screenshot  |
